@@ -31,7 +31,7 @@ class ProductController {
             res.end();
         })
     }
-    editProduct = (req, res, id) => {
+    editProduct = async (req, res, id) => {
         if (req.method === 'GET') {
             fs.readFile('./view/product/edit.html', "utf-8", async (err, editHtml) => {
                 let product = await productService.findById(id);
@@ -53,15 +53,11 @@ class ProductController {
            req.on('data', value=>{
                 data+=value
            })
-            req.on('end', ()=>{
+            req.on('end',async ()=>{
                 let afterEdit = qs.parse(data);
-                fs.readFile('./view/product/edit.html', "utf-8", async (err, editHtml) =>{
-                    editHtml = await productService.updateById(id, afterEdit.name_product, afterEdit.price, afterEdit.description, afterEdit.id_category);
-                    console.log(editHtml)
-                    res.writeHead(301, {'location': '/home'})
-                    res.write(editHtml);
-                    res.end();
-                })
+                await productService.updateById(id, afterEdit.name_product, afterEdit.price, afterEdit.description, afterEdit.id_category);
+                res.writeHead(301, {'location': '/home'})
+                res.end();
             })
         }
     }
