@@ -39,6 +39,28 @@ class ProductService{
             })
         })
     }
+    addProduct = (addNewProduct) =>{
+        return new Promise((resolve, reject) => {
+            this.connect.query(`INSERT INTO products (name_product, price, description, id_category) VALUES ('${addNewProduct.name_product}', '${addNewProduct.price}', '${addNewProduct.description}', '${addNewProduct.id_category}');`, (err, product)=>{
+                if(err){
+                    reject(err);
+                } else {
+                    resolve(product);
+                }
+            })
+        })
+    }
+    deleteProduct = (id) => {
+        return new Promise ((resolve, reject) => {
+            this.connect.query(`DELETE FROM products WHERE id = '${id}';`, (err, product)=>{
+                if(err){
+                    reject(err);
+                } else {
+                    resolve(product);
+                }
+            })
+        })
+    }
 }
 
 module.exports = new ProductService();

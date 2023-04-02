@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new product</title>
+</head>
+<body>
+<form method="POST">
+    <h3>Create New Product</h3>
+    <table>
+        <tr>
+            <td>
+                <p>Nhập tên sản phẩm:</p>
+            </td>
+            <td><input type="text" name="name_product" required></td>
+        </tr>
+        <tr>
+            <td>
+                <p>Nhập giá sản phẩm:</p></td>
+            <td><input type="text" name="price" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Nhập mô tả sản phẩm: </p>
+            </td>
+            <td><textarea type="text" name="description" required></textarea></td>
+        </tr>
+        <tr>
+            <td>
+                <select name="id_category" required>
+                    {categories}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Submit</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
