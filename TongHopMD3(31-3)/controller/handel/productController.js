@@ -18,7 +18,7 @@ class ProductController {
                 </td>
                 <td>
                     <form method="POST">
-                    <input type="text" name="idDelete" value="${values.id}">
+                    <input type="hidden" name="idDelete" value="${values.id}">
                     <button type="submit" class="btn btn-outline-warning">Xóa</button>
                     </form>
                 </td>
@@ -42,8 +42,8 @@ class ProductController {
             })
             req.on('end', async ()=>{
                 let infor = qs.parse(data);
-                let idProduct = await productService.findById();
-                await productService.deleteProduct(idProduct);
+                console.log(infor)
+                await productService.deleteProduct(infor.idDelete);
                 res.writeHead(301, {'location': '/home'})
                 res.end();
             })
