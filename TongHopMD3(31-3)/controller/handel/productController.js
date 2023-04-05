@@ -14,6 +14,11 @@ class ProductController {
                 <td>${values.id_category}</td>
                 <td>${values.name_category}</td>
                 <td>
+                    <div class="size_image">
+                    <img src="${values.image}" alt="ảnh">
+                    </div>
+                </td>
+                <td>
                     <a type="button" class="btn btn-outline-info" href="/edit/${values.id}">Sửa</a>
                 </td>
                 <td>
